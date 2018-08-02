@@ -1,0 +1,13 @@
+[Unit]
+Description=Convert video from input to HLS
+After=network.target
+
+[Service]
+Type=simple
+User=hlshoster
+ExecStart=/path/run_server.py --db=/path/to/db --host='127.0.0.1' --port=8888
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

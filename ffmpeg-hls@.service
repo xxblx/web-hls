@@ -3,12 +3,12 @@ Description=Convert video from input to HLS
 After=network.target
 
 [Service]
-Type=oneshot
 User=hlshoster
-ExecStart=/usr/bin/mkdir -p %h/video/%i
-ExecStart=/usr/bin/rm -rf %h/video/%i/*
-ExecStart=/usr/bin/ffmpeg -i %I -fflags flush_packets -max_delay 1 -an -flags -global_header -hls_time 4 -hls_list_size 2 -hls_wrap 2 -vcodec copy -y %h/video/%i/video.m3u8
+ExecStartPre=/usr/bin/mkdir -p "/home/hlshoster/video/%i"
+ExecStart=/usr/bin/ffmpeg -i %I -fflags flush_packets -max_delay 1 -an -flags -global_header -hls_time 4 -hls_list_size 2 -hls_wrap 2 -vcodec copy -y "/home/hlshoster/video/%i/video.m3u8"
+ExecStopPost=/usr/bin/rm -rf "/home/hlshoster/video/%i/"*
 Restart=on-failure
+RestartSec=60
 
 [Install]
 WantedBy=multi-user.target
