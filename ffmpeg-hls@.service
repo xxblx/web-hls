@@ -4,9 +4,9 @@ After=network.target
 
 [Service]
 User=hlshoster
-ExecStartPre=/usr/bin/mkdir -p "/home/hlshoster/video/%i"
-ExecStart=/usr/bin/ffmpeg -i %I -fflags flush_packets -max_delay 1 -an -flags -global_header -hls_time 4 -hls_list_size 2 -hls_wrap 2 -vcodec copy -y "/home/hlshoster/video/%i/video.m3u8"
-ExecStopPost=/usr/bin/rm -rf "/home/hlshoster/video/%i/"*
+ExecStartPre=/usr/bin/mkdir -p "/path/video/%i"
+ExecStart=/usr/bin/ffmpeg -i %I -fflags flush_packets -max_delay 1 -an -flags -global_header -hls_time 4 -hls_list_size 2 -hls_wrap 2 -vcodec copy -y "/path/video/%i/video.m3u8"
+ExecStopPost=/usr/bin/rm -rf "/path/video/%i/"*
 Restart=on-failure
 RestartSec=60
 
