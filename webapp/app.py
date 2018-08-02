@@ -29,7 +29,7 @@ class WebApp(tornado.web.Application):
             (r'/', MainPageHandler),
             (r'/login', LoginHandler),
             (r'/logout', LogoutHandler),
-            (r'/source/([0-9]*)', SourcePageHandler)
+            (r'/source/([0-9]*/?)', SourcePageHandler)
         ]
 
         # Fetch info about videos

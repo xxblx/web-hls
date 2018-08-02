@@ -17,5 +17,8 @@ class SourcePageHandler(BaseHandler):
 
     @tornado.web.authenticated
     def get(self, source_num):
+        if source_num.endswith('/'):
+            source_num = source_num[:-1]
+
         sources = [(v[0], v[2]) for v in self.videos]
         self.render('source.html', source_num=source_num, sources=sources)
