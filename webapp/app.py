@@ -36,6 +36,7 @@ class WebApp(tornado.web.Application):
         # Fetch info about videos
         self.cursor.execute(SELECT['video'])
         self.videos = self.cursor.fetchall()
+        self.videos_nums = set(v[0] for v in self.videos)
 
         # Add video paths to handlers
         for video in self.videos:

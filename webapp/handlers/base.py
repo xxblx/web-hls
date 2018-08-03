@@ -25,6 +25,10 @@ class BaseHandler(tornado.web.RequestHandler):
     def videos(self):
         return self.application.videos
 
+    @property
+    def videos_nums(self):
+        return self.application.videos_nums
+
     @tornado.concurrent.run_on_executor
     def verify_password(self, passwd, passwd_hash):
         return bcrypt.checkpw(passwd, passwd_hash)
