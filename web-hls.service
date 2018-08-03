@@ -1,5 +1,5 @@
 [Unit]
-Description=Convert video from input to HLS
+Description=Start tornado web server with web-hls app
 After=network.target
 
 [Service]
