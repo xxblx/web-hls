@@ -8,6 +8,7 @@ import tornado.web
 
 from .handlers.auth import LoginHandler, LogoutHandler
 from .handlers.main import MainPageHandler, SourcePageHandler
+from .handlers.video import VideoServeHandler
 
 from .sql import SELECT
 
@@ -36,13 +37,12 @@ class WebApp(tornado.web.Application):
         self.cursor.execute(SELECT['video'])
         self.videos = self.cursor.fetchall()
 
-        # FIXME: m3u8 and ts are available without auth
         # Add video paths to handlers
         for video in self.videos:
             path = os.path.dirname(video[1])
             handlers.append(
                 (r'/video/%d/(video[0-9]?\.(m3u8|ts))' % video[0],
-                 tornado.web.StaticFileHandler, {'path': path})
+                 VideoServeHandler, {'dir_path': path})
             )
 
         template_path = os.path.join(os.path.dirname(__file__), 'templates')
