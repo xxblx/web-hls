@@ -1,9 +1,9 @@
 
 # web-hls 
 
-Web-hls is a very simple prototype of a tool for streaming video from ip cameras (rtsp) to web (hls). Originally web-hls was designed for personal usage at home's local network. This tool is not suitable for using in the production. 
+Web-hls is a very simple tool for streaming video from ip cameras (rtsp) to web (hls). Originally web-hls was designed for personal usage at home's local network (i.e. without access from the internet). This tool is not suitable for using in the production. 
 
-Web-hls is licensed under zlib/libpng. See LICENSE for details.
+Web-hls is licensed under zlib. See LICENSE for details.
 
 # Installation
 
@@ -29,5 +29,11 @@ Edit `web-hls.service` and copy it `/etc/systemd/system`, start and enable unit
 ```
 # systemctl start web-hls.service
 # systemctl enable web-hls.service
+```
+
+Add user (for web) and video sources with `db_insert.py`
+```
+$ ./db_insert.py --db='/path/db' users -l myuser
+$ ./db_insert.py --db='/path/db' video -p /path/video.m3u8 -n 'room'
 ```
 
