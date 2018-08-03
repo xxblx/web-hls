@@ -25,7 +25,12 @@ def main():
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(args.port, args.host)
 
-    loop.start()
+    try:
+        loop.start()
+    except KeyboardInterrupt:
+        loop.stop()
+    finally:
+        loop.close()
 
 
 if __name__ == '__main__':
