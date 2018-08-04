@@ -16,7 +16,6 @@ Edit `ffmpeg-hls@.service` and copy it to `/etc/systemd/system`, start and enabl
 
 ```
 # systemctl start ffmpeg-hls@rtsp://ip:port  # replace rtsp://ip:port with your input
-# systemctl enable ffmpeg-hls@rtsp://ip:port
 ```
 
 Create virtual environment and install packages under `hlshoster` user
@@ -28,12 +27,11 @@ $ VENV/bin/pip install tornado bcrypt  # install packages
 Edit `web-hls.service` and copy it `/etc/systemd/system`, start and enable unit 
 ```
 # systemctl start web-hls.service
-# systemctl enable web-hls.service
 ```
 
 Add user (for web) and video sources with `db_insert.py`
 ```
 $ ./db_insert.py --db='/path/db' users -l myuser
-$ ./db_insert.py --db='/path/db' video -p /path/video.m3u8 -n 'room'
+$ ./db_insert.py --db='/path/db' video -p /path/video.m3u8 -n 'camera1' -c 'room'
 ```
 
