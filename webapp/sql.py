@@ -27,5 +27,5 @@ INSERT INTO video_t (video_path, source_name, comment) VALUES(?, ?, ?)',
 
 SELECT = {
     'users': 'SELECT passwd_hash FROM users_t WHERE login = ?',
-    'video': 'SELECT video_id, video_path, comment FROM video_t',
+    'video': 'SELECT video_id, video_path, source_name, comment FROM video_t',
 }

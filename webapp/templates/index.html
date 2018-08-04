@@ -15,9 +15,9 @@
 
 {% for source in sources %}
 <div>
-    <video class="video" id="video{{source[0]}}" controls loop style="width: 480px;"></video>
+    <a href="/source/{{source[0]}}">{{source[1]}}</a> - {{source[2]}}
     <br />
-    <a href="/source/{{source[0]}}">Open {{source[1]}} page</a>
+    <video class="video" id="video{{source[0]}}" controls loop style="width: 480px;"></video>
 </div>
 {% end %}
 
