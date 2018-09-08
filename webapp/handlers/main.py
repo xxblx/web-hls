@@ -23,5 +23,12 @@ class SourcePageHandler(BaseHandler):
         if int(source_num) not in self.videos_nums:
             raise tornado.web.HTTPError(404)
 
-        sources = [(v[0], v[2], v[3]) for v in self.videos]
-        self.render('source.html', source_num=source_num, sources=sources)
+        sources = []
+        for idx in range(len(self.videos)):
+            v = self.videos[idx]
+            sources.append((v[0], v[2], v[3]))
+
+            if v[0] == int(source_num):
+                source_idx = idx
+
+        self.render('source.html', source_idx=source_idx, sources=sources)
